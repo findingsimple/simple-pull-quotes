@@ -46,7 +46,8 @@ class Simple_Pull_Quotes {
             'back' => __( 'Back' ),
             'forward' => __( 'Forward' ),
             'width' => __( 'Width' ),
-            'wrap' => __( 'Wrap' )
+            'wrap' => __( 'Wrap' ),
+            'cite' => __( 'Citation')
         );
         
         add_action( 'init', array( $this , 'simple_pull_quotes_init' ) );
@@ -149,6 +150,7 @@ class Simple_Pull_Quotes {
             'forward' => 0,
             'width'   => '',
             'wrap'    => '',
+            'cite'    => ''
         );
 
         $attr = shortcode_atts( $defaults, $attr );
@@ -174,7 +176,10 @@ class Simple_Pull_Quotes {
         if ( ! empty( $attr['wrap'] ) )
             $data .= ' data-wrap="' . esc_attr( $attr['wrap'] ) . '"';
 
-        return '<span class="pullquote' . $attr['align'] . '"' . $data . '>'. do_shortcode( $content ) .'</span>';
+        if ( ! empty( $attr['cite'] ) )
+            $data .= ' data-cite="' . esc_attr( $attr['cite'] ) . '"';
+
+        return '<span class="pullquote' . $attr['align'] . '"' . $data . ' ' . $cite . '>'. do_shortcode( $content ) .'</span>';
  
     }
 
