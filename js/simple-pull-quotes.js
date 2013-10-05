@@ -8,7 +8,8 @@ jQuery(document).ready(function($) {
 
 		$quote.prepend('<span class="quote-open ss-quote"></span>'); /* useful for adding curly quotes */
 
-		$quote.append( ' <cite>' + $(this).data( 'cite' ) + '</cite>' );
+		if ( $(this).data( 'cite' ) != undefined )
+			$quote.append( ' <cite>' + $(this).data( 'cite' ) + '</cite>' );
 
 		$quote.append('<span class="quote-close"></span>'); /* useful for adding curly quotes */
 
