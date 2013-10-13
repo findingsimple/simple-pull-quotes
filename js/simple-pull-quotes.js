@@ -45,6 +45,24 @@ jQuery(document).ready(function($) {
 
 			$quote.remove();
 
+		} else if ( $(this).data( 'forward' ) ) {
+
+			var $forward = parseInt( $(this).data( 'forward' ) );
+
+			var $parent = $quote.parents( 'p' );
+
+			while( $forward > 0 ) {
+
+				$parent = $parent.next( 'p' );
+
+				--$forward;
+
+			}
+
+			$parent.before( $quote.clone() );
+
+			$quote.remove();
+
 		} else {
 
 			$quote.parents('p').css( 'position', 'relative' );
