@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 
 			var $back = parseInt( $(this).data( 'back' ) );
 
-			var $parent = $quote.parents( 'p' );
+			var $parent = $quote.parents( 'p, ul, blockquote' );
 
 			while( $back > 0 ) {
 
@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
 
 			var $forward = parseInt( $(this).data( 'forward' ) );
 
-			var $parent = $quote.parents( 'p' );
+			var $parent = $quote.parents( 'p, ul, blockquote' );
 
 			while( $forward > 0 ) {
 
