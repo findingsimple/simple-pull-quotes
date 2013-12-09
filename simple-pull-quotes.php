@@ -61,10 +61,14 @@ class Simple_Pull_Quotes {
      */
     function simple_pull_quotes_init() {
 
+    	if !( is_admin() ) {
+
+        	add_action( 'wp_enqueue_scripts', array( $this, 'add_simple_pull_quotes_script' ) );
+
+        }
+
         if ( ( current_user_can('edit_posts') || current_user_can('edit_pages') ) && get_user_option('rich_editing') ) {
-  
-            add_action( 'wp_enqueue_scripts', array( $this, 'add_simple_pull_quotes_script' ) );
-        
+          
             add_action( 'admin_enqueue_scripts', array( $this, 'add_simple_pull_quotes_admin_scripts' ) );
  
             add_action( 'admin_footer', array( $this, 'the_jquery_dialog_markup' ) );
