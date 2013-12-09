@@ -61,7 +61,7 @@ class Simple_Pull_Quotes {
      */
     function simple_pull_quotes_init() {
 
-    	if !( is_admin() ) {
+    	if ( !is_admin() ) {
 
         	add_action( 'wp_enqueue_scripts', array( $this, 'add_simple_pull_quotes_script' ) );
 
