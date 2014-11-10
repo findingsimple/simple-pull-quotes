@@ -65,7 +65,7 @@ class Simple_Pull_Quotes {
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_simple_pull_quotes_script' ) );
 
-			add_filter( 'the_content', array( $this, 'shortcode_empty_paragraph_fix' ) );
+			//add_filter( 'the_content', array( $this, 'shortcode_empty_paragraph_fix' ) );
 
 		}
 
