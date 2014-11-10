@@ -59,7 +59,7 @@ class Simple_Pull_Quotes {
 	/**
 	 * Apply appropriate hooks and filters
 	 */
-	function simple_pull_quotes_init() {
+	public function simple_pull_quotes_init() {
 
 		if ( !is_admin() ) {
 
@@ -86,9 +86,9 @@ class Simple_Pull_Quotes {
 	/**
 	 * Add tinymce plugin
 	 */
-	function mce_external_plugins( $plugin_array ) {
+	public function mce_external_plugins( $plugin_array ) {
 
-		$plugin_array['simple_pull_quotes'] = plugins_url( '/tinymce/editor_plugin.js', __FILE__ );
+		$plugin_array['simple_pull_quotes'] = self::get_url( '/tinymce/editor_plugin.js', __FILE__ );
 
 		return $plugin_array;
 
@@ -97,7 +97,7 @@ class Simple_Pull_Quotes {
 	/**
 	 * Add pull quote button WordPress editor
 	 */
-	function mce_buttons( $buttons ) {
+	public function mce_buttons( $buttons ) {
 
 		if ( ! in_array( 'simple_pull_quotes', $buttons ) )
 			array_push( $buttons, 'simple_pull_quotes' );
@@ -109,16 +109,16 @@ class Simple_Pull_Quotes {
 	/**
 	 * Register the front end script for displaying when a pull quote is used
 	 */
-	function add_simple_pull_quotes_script() {
+	public function add_simple_pull_quotes_script() {
 
-		wp_register_script( 'simple-pull-quotes', plugins_url( 'js/simple-pull-quotes.js', __FILE__ ), array( 'jquery' ), '1', true );
+		wp_register_script( 'simple-pull-quotes', self::get_url( '/js/simple-pull-quotes.js', __FILE__ ), array( 'jquery' ), '1', true );
 	
 	}
 
 	/**
 	 * Add admin scripts
 	 */
-	function add_simple_pull_quotes_admin_scripts() {
+	public function add_simple_pull_quotes_admin_scripts() {
  
 		global $pagenow;
 
@@ -132,7 +132,7 @@ class Simple_Pull_Quotes {
 			/**
 			 * Add admin scripts
 			 */
-			wp_enqueue_script( 'simple-pull-quotes-admin', plugins_url( '/js/simple-pull-quotes-admin.js', __FILE__ ), array( 'jquery-ui-dialog', 'jquery-ui-tabs' ), '1', true );
+			wp_enqueue_script( 'simple-pull-quotes-admin', self::get_url( '/js/simple-pull-quotes-admin.js', __FILE__ ), array( 'jquery-ui-dialog', 'jquery-ui-tabs' ), '1', true );
 
 			wp_localize_script( 'simple-pull-quotes-admin', 'pullquoteFields', self::$pullquote_fields );
 		
@@ -143,7 +143,7 @@ class Simple_Pull_Quotes {
 	/**
 	 * Add pullquote shortcode
 	 */
-	function pullquote( $attr, $content = '' ) {
+	public function pullquote( $attr, $content = '' ) {
 
 		/**
 		 * Enqueue the front end script when pull quotes are used
@@ -192,7 +192,7 @@ class Simple_Pull_Quotes {
 	/**
 	 * Build jQuery UI Window.
 	 */
-	function the_jquery_dialog_markup() {
+	public function the_jquery_dialog_markup() {
 
 		$screen = get_current_screen();
 
@@ -239,7 +239,7 @@ class Simple_Pull_Quotes {
 	 * Replaces WP autop formatting 
 	 *
 	 */
-	function remove_wpautop($content) {
+	public function remove_wpautop($content) {
 		$content = do_shortcode( shortcode_unautop( $content ) ); 
 		$content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content);
 		return $content;
@@ -248,7 +248,7 @@ class Simple_Pull_Quotes {
 	/**
 	 * Shortcode Empty Paragraph Fix
 	 */
-	function shortcode_empty_paragraph_fix( $content ) {
+	public function shortcode_empty_paragraph_fix( $content ) {
 
 		$array = array (
 			'<p>[' => '[',
@@ -260,6 +260,21 @@ class Simple_Pull_Quotes {
 
 		return $content;
 	}
+
+	/**
+	 * Helper function to get the URL of a given file. 
+	 * 
+	 * As this plugin may be used as both a stand-alone plugin and as a submodule of 
+	 * a theme, the standard WP API functions, like plugins_url() can not be used. 
+	 */
+	public function get_url( $file ) {
+
+		// Get the path of this file after the WP content directory
+		$post_content_path = substr( dirname( str_replace('\\','/',__FILE__) ), strpos( __FILE__, basename( WP_CONTENT_DIR ) ) + strlen( basename( WP_CONTENT_DIR ) ) );
+
+		// Return a content URL for this path & the specified file
+		return content_url( $post_content_path . $file );
+	}	
 
 }
 
