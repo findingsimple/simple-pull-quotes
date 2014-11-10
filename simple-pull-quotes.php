@@ -9,7 +9,7 @@ Author URI: http://findingsimple.com
 License: GPL2
 */
 /*
-Copyright 2013  Finding Simple  (email : plugins@findingsimple.com)
+Copyright 2014  Finding Simple  (email : plugins@findingsimple.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
