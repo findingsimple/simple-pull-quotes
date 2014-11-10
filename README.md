@@ -3,7 +3,7 @@
 Contributors: jconroy    
 Tags: editor, custom, pull quote, tinymce, shortcode, ui 
 Requires at least: 3.6  
-Tested up to: 3.6.1  
+Tested up to: 4.0 
 Stable tag: 1.0
 
 Adds an insert pull quote button to the WordPress editor.
