@@ -31,6 +31,7 @@ Upon clicking the button a modal window will appear with the following options:
 * **back** - specify how many paragraphs 'back' to position the pull quote. Can be any number.
 * **forward** - specify how many paragraphs 'forward' to position the pull quote.  Can be any number.
 * **wrap** - set to true to wrap the pull quote in a paragraph tag.  Good for inserting between paragraphs.
+* **cite** - optional source citation for the quoted text.
 
 ## Changelog ##
 
