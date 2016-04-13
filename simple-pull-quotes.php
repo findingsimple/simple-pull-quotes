@@ -185,7 +185,7 @@ class Simple_Pull_Quotes {
 		if ( ! empty( $attr['cite'] ) )
 			$data .= ' data-cite="' . esc_attr( $attr['cite'] ) . '"';
 
-		return Simple_Pull_Quotes::remove_wpautop( '<span class="pullquote' . $attr['align'] . '"' . $data . ' ' . $cite . '>'. do_shortcode( $content ) .'</span>' );
+		return Simple_Pull_Quotes::remove_wpautop( '<span class="pullquote' . $attr['align'] . '"' . $data . ' ' . $attr['cite'] . '>'. do_shortcode( $content ) .'</span>' );
  
 	}
 
